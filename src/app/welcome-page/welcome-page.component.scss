@@ -1,0 +1,24 @@
+.welcome-hero {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 32px 20px;
+  margin: 16px auto;
+  max-width: 920px;
+  box-shadow: 0 2px 6px rgba(0,0,0,.06);
+}
+
+.hero-inner {
+  text-align: center;
+}
+
+.subtitle {
+  margin: 8px 0 20px;
+  color: #4a4a4a;
+}
+
+.cta-row {
+  display: inline-flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}

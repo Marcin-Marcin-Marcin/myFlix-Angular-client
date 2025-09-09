@@ -1,0 +1,15 @@
+<div class="movie-grid">
+  <mat-card *ngFor="let movie of movies; let i = index" class="movie-card">
+    <mat-card-header>
+      <mat-card-title>{{ movie.Title }}</mat-card-title>
+      <mat-card-subtitle *ngIf="movie?.Director?.Name">
+        Directed by: {{ movie.Director.Name }}
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <div class="poster-wrap">
+      <img [src]="movie.ImagePath" [alt]="movie.Title" loading="lazy" />
+    </div>
+
+  </mat-card>
+</div>

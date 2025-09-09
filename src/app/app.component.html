@@ -1,20 +1,13 @@
-<div class="main-page">
-  <h1>
-    Welcome to myFlix!
-  </h1>
-  <button
-    mat-raised-button
-    (click)="openUserRegistrationDialog()"
-    style="margin-right: 10px;"
-    color="primary"
-  >
-    Sign Up
-  </button>
-  <button
-    mat-raised-button
-    color="primary"
-    (click)="openUserLoginDialog()"
-  >
-    Login
-  </button>
+<mat-toolbar color="primary" class="app-toolbar">
+  <div class="toolbar-inner">
+    <div class="brand">
+      <mat-icon aria-hidden="true">theaters</mat-icon>
+      <span class="brand-text">myFlix</span>
+    </div>
+    <span class="spacer"></span>
+  </div>
+</mat-toolbar>
+
+<div class="container">
+  <router-outlet></router-outlet>
 </div>

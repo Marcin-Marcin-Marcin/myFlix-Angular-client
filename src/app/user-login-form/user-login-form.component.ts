@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 import { FetchApiDataService } from '../fetch-api-data.service';
 
@@ -15,7 +16,8 @@ export class UserLoginFormComponent {
   constructor(
     public api: FetchApiDataService,
     public dialogRef: MatDialogRef<UserLoginFormComponent>,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    private router: Router
   ) {}
 
   login(): void {
@@ -26,6 +28,9 @@ export class UserLoginFormComponent {
         localStorage.setItem('token', res.token);
         this.dialogRef.close();
         this.snackBar.open('Logged in!', 'OK', { duration: 2000 });
+
+        // Route to movies
+        this.router.navigate(['movies']);
       },
       (err) => {
         this.snackBar.open(err?.error || 'Login failed', 'OK', { duration: 3000 });
