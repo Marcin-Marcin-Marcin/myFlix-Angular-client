@@ -1,3 +1,4 @@
+// Grid
 .movie-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -5,37 +6,90 @@
   padding: 8px 0;
 }
 
+// Card 
 .movie-card {
-  transition: transform .15s ease, box-shadow .15s ease;
+  display: flex;
+  flex-direction: column;
+  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
   border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface);
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(0,0,0,.08);
+    box-shadow: 0 8px 24px rgba(0,0,0,.35);
+    border-color: rgba(255,255,255,.12);
   }
 }
 
-.poster-wrap {
-  margin: 8px 0 0;
-
-  img {
-    width: 100%;
-    border-radius: 8px;
-    object-fit: cover;
-    max-height: 320px;
-  }
+.poster-wrap { order: 0; margin: 8px 8px 0; }
+.poster-wrap img {
+  width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+  max-height: 420px;
 }
 
-// Media queries
+::ng-deep .movie-card .mat-card-header {
+  order: 1;
+  padding: 8px 12px 0;
+}
+::ng-deep .movie-card .mat-card-title { font-size: 1.1rem; font-weight: 700; color: #fff; }
+::ng-deep .movie-card .mat-card-subtitle { color: rgba(255,255,255,.72); }
+
+::ng-deep .movie-card .mat-card-actions {
+  order: 2;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6px;
+  padding: 8px 12px 12px;
+}
+
+.labels-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+::ng-deep .movie-card .mat-card-actions .labels-row button[mat-button] {
+  font-size: 10.5px;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  padding: 0 6px;
+  min-width: 0;
+  color: rgba(255,255,255,.92);
+}
+
+.fav-row {
+  display: flex;
+  justify-content: flex-end;
+}
+::ng-deep .movie-card .mat-card-actions .fav-row button[aria-label="Add to favorites"] {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  min-height: 32px;
+  line-height: 32px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0;
+}
+::ng-deep .movie-card .mat-card-actions .fav-row button[aria-label="Add to favorites"] mat-icon {
+  font-size: 18px;
+}
+
+.spacer { flex: 1 1 auto; }
+
+// Media query
 @media (min-width: 600px) {
   .movie-grid { grid-template-columns: repeat(2, 1fr); }
-  .poster-wrap img { max-height: 340px; }
+  .poster-wrap img { max-height: 440px; }
 }
 @media (min-width: 900px) {
   .movie-grid { grid-template-columns: repeat(3, 1fr); }
-  .poster-wrap img { max-height: 360px; }
+  .poster-wrap img { max-height: 460px; }
 }
 @media (min-width: 1200px) {
   .movie-grid { grid-template-columns: repeat(4, 1fr); }
-  .poster-wrap img { max-height: 380px; }
+  .poster-wrap img { max-height: 480px; }
 }

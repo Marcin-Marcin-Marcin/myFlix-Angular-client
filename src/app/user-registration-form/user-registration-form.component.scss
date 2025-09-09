@@ -1,0 +1,18 @@
+:host {
+  display: block;
+}
+mat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+mat-card-title {
+  color: #fff;
+}
+mat-form-field {
+  width: 100%;
+}
+mat-card-actions {
+  display: flex;
+  justify-content: flex-end;
+}

@@ -4,7 +4,16 @@
       <mat-icon aria-hidden="true">theaters</mat-icon>
       <span class="brand-text">myFlix</span>
     </div>
+
     <span class="spacer"></span>
+
+    <!-- Show nav only when logged in -->
+    <ng-container *ngIf="isLoggedIn">
+      <a mat-button routerLink="/movies" routerLinkActive="active-link">Movies</a>
+      <a mat-button routerLink="/profile" routerLinkActive="active-link">Profile</a>
+
+      <button mat-button (click)="logout()">Logout</button>
+    </ng-container>
   </div>
 </mat-toolbar>
 

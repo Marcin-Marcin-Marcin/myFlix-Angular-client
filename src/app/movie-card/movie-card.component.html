@@ -11,5 +11,18 @@
       <img [src]="movie.ImagePath" [alt]="movie.Title" loading="lazy" />
     </div>
 
+    <mat-card-actions>
+      <div class="labels-row">
+        <button mat-button color="primary" (click)="openGenre(movie?.Genre?.Name)">Genre</button>
+        <button mat-button color="primary" (click)="openDirector(movie?.Director?.Name)">Director</button>
+        <button mat-button color="primary" (click)="openSynopsis(movie.Title, movie.Description)">Synopsis</button>
+      </div>
+
+      <div class="fav-row">
+        <button mat-icon-button aria-label="Add to favorites" (click)="addToFavorites(movie._id)">
+          <mat-icon>favorite_border</mat-icon>
+        </button>
+      </div>
+    </mat-card-actions>
   </mat-card>
 </div>

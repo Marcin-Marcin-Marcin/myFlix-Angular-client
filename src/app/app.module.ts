@@ -21,6 +21,10 @@ import { UserRegistrationFormComponent } from './user-registration-form/user-reg
 import { UserLoginFormComponent } from './user-login-form/user-login-form.component';
 import { MovieCardComponent } from './movie-card/movie-card.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { GenreDialogComponent } from './dialogs/genre-dialog/genre-dialog.component';
+import { DirectorDialogComponent } from './dialogs/director-dialog/director-dialog.component';
+import { SynopsisDialogComponent } from './dialogs/synopsis-dialog/synopsis-dialog.component';
 
 /* Routing */
 import { RouterModule, Routes } from '@angular/router';
@@ -28,6 +32,7 @@ import { RouterModule, Routes } from '@angular/router';
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
   { path: 'movies', component: MovieCardComponent },
+  { path: 'profile', component: UserProfileComponent },
   { path: '', redirectTo: 'welcome', pathMatch: 'full' }
 ];
 
@@ -37,7 +42,11 @@ const appRoutes: Routes = [
     UserRegistrationFormComponent,
     UserLoginFormComponent,
     MovieCardComponent,
-    WelcomePageComponent
+    WelcomePageComponent,
+    UserProfileComponent,
+    GenreDialogComponent,
+    DirectorDialogComponent,
+    SynopsisDialogComponent
   ],
   imports: [
     BrowserModule,
