@@ -19,8 +19,14 @@
       </div>
 
       <div class="fav-row">
-        <button mat-icon-button aria-label="Add to favorites" (click)="addToFavorites(movie._id)">
-          <mat-icon>favorite_border</mat-icon>
+        <button
+          mat-icon-button
+          [color]="isFavorite(movie._id) ? 'accent' : undefined"
+          [attr.aria-pressed]="isFavorite(movie._id)"
+          aria-label="Toggle favorite"
+          (click)="toggleFavorite(movie._id)"
+        >
+          <mat-icon>{{ isFavorite(movie._id) ? 'favorite' : 'favorite_border' }}</mat-icon>
         </button>
       </div>
     </mat-card-actions>

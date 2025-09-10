@@ -24,7 +24,7 @@ export class UserLoginFormComponent {
     this.api.userLogin(this.credentials).subscribe(
       (res: any) => {
         // Expecting { user: {...}, token: '...' }
-        localStorage.setItem('user', JSON.stringify(res.user));
+        localStorage.setItem('user', JSON.stringify(res.safetyUser));
         localStorage.setItem('token', res.token);
         this.dialogRef.close();
         this.snackBar.open('Logged in!', 'OK', { duration: 2000 });

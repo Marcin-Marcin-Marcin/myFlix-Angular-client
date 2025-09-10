@@ -27,3 +27,21 @@
     </div>
   </form>
 </section>
+
+<!-- Favorites -->
+<section class="profile-wrap" style="margin-top: 16px;">
+  <h2>Favorites</h2>
+
+  <div *ngIf="favoriteMovies.length === 0" class="empty-state">
+    No favorite movies yet.
+  </div>
+
+  <div class="favorites-grid" *ngIf="favoriteMovies.length > 0">
+    <mat-card *ngFor="let movie of favoriteMovies" class="fav-card">
+      <img [src]="movie.ImagePath" [alt]="movie.Title" />
+      <mat-card-content>
+        <h3>{{ movie.Title }}</h3>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</section>
