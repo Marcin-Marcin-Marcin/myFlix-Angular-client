@@ -10,7 +10,15 @@ import { FetchApiDataService } from '../fetch-api-data.service';
   templateUrl: './user-login-form.component.html',
   styleUrls: ['./user-login-form.component.scss']
 })
+/**
+ * UserLoginFormComponent
+ *
+ * Provides a login form for existing users.
+ * Handles authentication by calling the API,
+ * stores credentials in local storage, and navigates to the movie list.
+ */
 export class UserLoginFormComponent {
+  /** Data model for login form */
   credentials = { Username: '', Password: '' };
 
   constructor(
@@ -20,10 +28,15 @@ export class UserLoginFormComponent {
     private router: Router
   ) {}
 
+  /**
+   * Logs the user in using provided credentials.
+   * Stores user and token in local storage, closes the dialog,
+   * shows a confirmation message, and navigates to the movie list.
+   */
   login(): void {
     this.api.userLogin(this.credentials).subscribe(
       (res: any) => {
-        // Expecting { user: {...}, token: '...' }
+        // Expecting { safetyUser: {...}, token: '...' }
         localStorage.setItem('user', JSON.stringify(res.safetyUser));
         localStorage.setItem('token', res.token);
         this.dialogRef.close();

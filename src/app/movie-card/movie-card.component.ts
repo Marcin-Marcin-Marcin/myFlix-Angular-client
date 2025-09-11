@@ -12,11 +12,21 @@ import { SynopsisDialogComponent } from '../dialogs/synopsis-dialog/synopsis-dia
   templateUrl: './movie-card.component.html',
   styleUrls: ['./movie-card.component.scss']
 })
+/**
+ * MovieCardComponent
+ *
+ * Displays a list of movies fetched from the API.
+ * Allows users to view details (genre, director, synopsis)
+ * and manage their list of favorite movies.
+ */
 export class MovieCardComponent implements OnInit {
+  /** All movies fetched from the API */
   movies: any[] = [];
 
-  // favorites state
+  /** Logged-in username (used for managing favorites) */
   private username: string | null = null;
+
+  /** Set of favorite movie IDs for the current user */
   private favIds = new Set<string>();
 
   constructor(
@@ -25,11 +35,16 @@ export class MovieCardComponent implements OnInit {
     private snack: MatSnackBar
   ) {}
 
+  /** Angular lifecycle hook. Initializes favorites and loads movies. */
   ngOnInit(): void {
     this.hydrateUserFavorites();
     this.getMovies();
   }
 
+  /**
+   * Loads user data from local storage and initializes favorite movies.
+   * @private
+   */
   private hydrateUserFavorites(): void {
     const stored = localStorage.getItem('user');
     if (!stored) { this.username = null; this.favIds.clear(); return; }
@@ -44,30 +59,56 @@ export class MovieCardComponent implements OnInit {
     }
   }
 
+  /**
+   * Fetches all movies from the API and stores them locally.
+   */
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any[]) => {
       this.movies = resp || [];
     });
   }
 
+  /**
+   * Opens a dialog displaying genre details.
+   * @param name Genre name
+   */
   openGenre(name?: string): void {
     if (!name) { return; }
     this.dialog.open(GenreDialogComponent, { width: '420px', data: { name } });
   }
 
+  /**
+   * Opens a dialog displaying director details.
+   * @param name Director name
+   */
   openDirector(name?: string): void {
     if (!name) { return; }
     this.dialog.open(DirectorDialogComponent, { width: '520px', data: { name } });
   }
 
+  /**
+   * Opens a dialog displaying the movie synopsis.
+   * @param title Movie title
+   * @param description Movie description
+   */
   openSynopsis(title: string, description: string): void {
     this.dialog.open(SynopsisDialogComponent, { width: '520px', data: { title, description } });
   }
 
+  /**
+   * Checks whether a movie is in the user's favorites.
+   * @param movieId Movie ID
+   * @returns true if the movie is a favorite, false otherwise
+   */
   isFavorite(movieId: string): boolean {
     return this.favIds.has(String(movieId));
   }
 
+  /**
+   * Toggles a movie in the user's list of favorites.
+   * Calls the API to update favorites and refreshes local storage.
+   * @param movieId Movie ID
+   */
   toggleFavorite(movieId: string): void {
     if (!this.username) {
       this.snack.open('Please log in first', 'OK', { duration: 2000 });
@@ -96,6 +137,11 @@ export class MovieCardComponent implements OnInit {
   }
 }
 
+/**
+ * Utility function to normalize an array of IDs or objects into a Set of strings.
+ * @param arr Array of IDs, strings, or objects with `_id`/`id`
+ * @returns Set of string IDs
+ */
 function toIdSet(arr: any[]): Set<string> {
   const ids = (arr || []).map((x: any) => {
     if (!x) return null;

@@ -7,9 +7,17 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.scss']
 })
+/**
+ * UserProfileComponent
+ *
+ * Displays and updates the logged-in user's profile.
+ * Allows editing profile details and shows the user's list of favorite movies.
+ */
 export class UserProfileComponent implements OnInit {
+  /** Currently logged-in user object */
   user: any = null;
 
+  /** Form data model for updating user profile */
   formData = {
     Username: '',
     Password: '',
@@ -17,9 +25,13 @@ export class UserProfileComponent implements OnInit {
     Birthday: ''
   };
 
-  // Favorites
+  /** All movies retrieved from the API */
   allMovies: any[] = [];
+
+  /** IDs of the user's favorite movies */
   favoriteIds = new Set<string>();
+
+  /** Favorite movies resolved from the full movie list */
   favoriteMovies: any[] = [];
 
   constructor(
@@ -27,6 +39,10 @@ export class UserProfileComponent implements OnInit {
     private snack: MatSnackBar
   ) {}
 
+  /**
+   * Angular lifecycle hook.
+   * Loads stored user data, fetches all movies, and resolves favorite movies.
+   */
   ngOnInit(): void {
     const stored = localStorage.getItem('user');
     if (stored) {
@@ -43,6 +59,11 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
+  /**
+   * Saves updated profile information.
+   * Calls the API to update the user, refreshes stored data,
+   * and reloads favorite movies.
+   */
   save(): void {
     if (!this.user?.Username) { return; }
     const username = this.user.Username;
@@ -71,6 +92,11 @@ export class UserProfileComponent implements OnInit {
   }
 }
 
+/**
+ * Utility function to normalize an array of IDs or objects into a Set of strings.
+ * @param arr Array of IDs, strings, or objects with `_id`/`id`
+ * @returns Set of string IDs
+ */
 function toIdSet(arr: any[]): Set<string> {
   const ids = (arr || []).map((x: any) => {
     if (!x) return null;

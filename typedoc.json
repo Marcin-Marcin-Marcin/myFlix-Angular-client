@@ -1,0 +1,10 @@
+{
+  "entryPoints": ["src/app"],
+  "out": "docs",
+  "tsconfig": "tsconfig.app.json",
+  "exclude": ["**/*.spec.ts", "src/test.ts"],
+  "excludePrivate": true,
+  "excludeInternal": true,
+  "readme": "none",
+  "hideGenerator": true
+}

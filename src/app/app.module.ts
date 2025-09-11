@@ -36,6 +36,11 @@ const appRoutes: Routes = [
   { path: '', redirectTo: 'welcome', pathMatch: 'full' }
 ];
 
+/**
+ * Root module of the Angular application.
+ * Declares all components, imports Angular Material modules,
+ * sets up routing, and bootstraps the main AppComponent.
+ */
 @NgModule({
   declarations: [
     AppComponent,
