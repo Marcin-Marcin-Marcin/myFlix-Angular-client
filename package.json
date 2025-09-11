@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "docs": "typedoc"
+    "docs": "typedoc --out docs src/app --tsconfig tsconfig.app.json"
   },
   "private": true,
   "dependencies": {
@@ -45,7 +45,7 @@
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
-    "typedoc": "^0.20.37",
+    "typedoc": "0.20.37",
     "typescript": "~3.9.5"
   }
 }
